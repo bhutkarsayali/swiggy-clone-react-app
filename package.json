@@ -1,0 +1,53 @@
+{
+  "name": "react-application",
+  "version": "1.0.0",
+  "description": "Its a react based application using react, redux, react-router,react testing library and tailwind css ",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
+    "test": "jest && jest --watch",
+    "watch-test": "jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bhutkarsayali/swiggy-clone-react-app.git"
+  },
+  "keywords": [
+    "react"
+  ],
+  "author": "Sayali Bhutkar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bhutkarsayali/swiggy-clone-react-app/issues"
+  },
+  "homepage": "https://github.com/bhutkarsayali/swiggy-clone-react-app#readme",
+  "devDependencies": {
+    "@babel/core": "^7.23.6",
+    "@babel/preset-env": "^7.23.6",
+    "@parcel/transformer-sass": "^2.10.3",
+    "@testing-library/react": "^14.1.2",
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "parcel": "^2.10.3",
+    "postcss": "^8.4.32",
+    "process": "^0.11.10",
+    "tailwindcss": "^3.3.6"
+  },
+  "dependencies": {
+    "@babel/preset-react": "^7.23.3",
+    "@reduxjs/toolkit": "^2.0.1",
+    "@testing-library/jest-dom": "^6.1.5",
+    "flowbite": "^2.2.0",
+    "flowbite-react": "^0.7.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.12.0",
+    "react-redux": "^9.0.4",
+    "react-router-dom": "^6.20.1"
+  },
+  "browserslist": [
+    "last 2 versions"
+  ]
+}
