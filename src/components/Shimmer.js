@@ -1,5 +1,5 @@
 const Shimmer = () => {
-  const shimmerCards = 5;
+  const shimmerCards = 9;
   return (
     <div className="flex flex-wrap w-full justify-around">
       {[...Array(shimmerCards)].map((e, index) => (

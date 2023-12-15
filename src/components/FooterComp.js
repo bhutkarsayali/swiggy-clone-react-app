@@ -56,7 +56,7 @@ const FooterComp = () => {
           </div>
         </div>
         <div className="w-full bg-gray-700 px-4 py-6 sm:flex sm:items-center sm:justify-between">
-          <FooterCopyright href="#" by="Flowbite™" year={2022} />
+          <FooterCopyright href="#" by="SwiggyClone™" year={2023} />
           <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
             <FooterIcon href="#" icon={BsFacebook} />
             <FooterIcon href="#" icon={BsInstagram} />
