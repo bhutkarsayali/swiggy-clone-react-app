@@ -24,6 +24,7 @@ const Body = () => {
 
     const jsonData = await data.json();
     console.log(jsonData);
+    
     setListOfRestaurents(
       jsonData?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants
@@ -70,7 +71,7 @@ const Body = () => {
               res.info.name.toLowerCase().includes(searchText.toLowerCase())
             );
             console.log(filterdRestaurents);
-            setListOfRestaurents(filterdRestaurents);
+            setFilteredListOfRestaurents(filterdRestaurents);
           }}
         >
           Search
