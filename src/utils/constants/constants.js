@@ -20,3 +20,6 @@ export const RESTAURANT_API_LONGITUDE =
 
 export const RESTAURANT_MENU_API =
   "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=18.5462313&lng=73.90395099999999&restaurantId=";
+
+export const CDN_URL =
+  "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/";

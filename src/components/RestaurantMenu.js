@@ -3,10 +3,15 @@ import { useParams } from "react-router-dom";
 import Shimmer from "./Shimmer";
 import useReastaurantMenu from "../utils/custom-hooks/useReastaurantMenu";
 import { FaRegStar } from "react-icons/fa";
+import { RxLapTimer } from "react-icons/rx";
+import { HiMiniCurrencyRupee } from "react-icons/hi2";
+import RestaurentCategory from "./RestaurentCategory";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
   const resInfo = useReastaurantMenu(resId);
+  //state variable to update accordion expand collapse
+  const [showIndex, setShowIndex] = useState(null);
 
   if (resInfo === null) return <Shimmer />;
 
@@ -18,8 +23,19 @@ const RestaurantMenu = () => {
     avgRating,
     totalRatingsString,
   } = resInfo?.cards[0]?.card?.card?.info;
+
   const { lastMileTravelString, slaString } =
     resInfo?.cards[0]?.card?.card?.info?.sla;
+
+  const categories =
+    resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+      (c) =>
+        c.card?.card?.["@type"] ==
+        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+    );
+
+  const propDrilling = "prop Drilling";
+
   return (
     <div className="w-8/12 m-auto p-4">
       <div className="flex justify-between">
@@ -43,6 +59,27 @@ const RestaurantMenu = () => {
           </div>
         </div>
       </div>
+      <hr className="bg-slate-500 border-dashed my-5" />
+      <div className="flex flex-wrap gap-8">
+        <span className="flex gap-2 items-center text-sm lowercase">
+          <RxLapTimer className="text-sm" /> <span>{slaString}</span>
+        </span>
+        <span className="flex gap-2 items-center text-sm lowercase">
+          <HiMiniCurrencyRupee className="text-sm h-4 w-4" />{" "}
+          <span>{costForTwoMessage}</span>
+        </span>
+      </div>
+      <hr className="bg-slate-500 border-dashed my-5" />
+
+      {categories.map((category, index) => (
+        <RestaurentCategory
+          key={category?.card?.card?.title}
+          data={category?.card?.card}
+          setShowIndex={() => setShowIndex(index)}
+          showItems={index === showIndex ? true : false}
+          propDrilling={propDrilling}
+        ></RestaurentCategory>
+      ))}
     </div>
   );
 };
