@@ -1,9 +1,14 @@
 import { Button } from "flowbite-react";
-import RestaurentCard from "./RestaurentCard";
+import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { useEffect, useState } from "react";
-import { RESTAURENT_API } from "../utils/constants/constants";
+import {
+  RESTAURANT_API,
+  RESTAURANT_API_LATTITUDE,
+  RESTAURANT_API_LONGITUDE,
+} from "../utils/constants/constants";
 import useOnlineStatus from "../utils/custom-hooks/useOnlineStatus";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   //get and update list of restaurents
@@ -14,17 +19,31 @@ const Body = () => {
   const [filteredListOfRestaurents, setFilteredListOfRestaurents] = useState(
     []
   );
+  // get current location using geolocation API
+  const [position, setPosition] = useState({
+    lattitude: null,
+    longitude: null,
+  });
 
   //get list of restaurents
   useEffect(() => {
     fetchData();
+    getGeolocation();
   }, []);
+
   const fetchData = async () => {
-    const data = await fetch(RESTAURENT_API);
+    const data = await fetch(RESTAURANT_API);
+    // const data = await fetch(
+    //   RESTAURANT_API_LATTITUDE +
+    //     position.latitude +
+    //     RESTAURANT_API_COCNCAT +
+    //     position.longitude +
+    //     RESTAURANT_API_LONGITUDE
+    // );
 
     const jsonData = await data.json();
     console.log(jsonData);
-    
+
     setListOfRestaurents(
       jsonData?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants
@@ -36,6 +55,18 @@ const Body = () => {
     console.log(listOfRestaurents);
   };
 
+  const getGeolocation = () => {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        setPosition({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        });
+      });
+    } else {
+      console.log("Geolocation is not available in your browser.");
+    }
+  };
   // check online status of users internet
   const onlineStatusofUser = useOnlineStatus();
   if (onlineStatusofUser === false) {
@@ -89,12 +120,23 @@ const Body = () => {
       >
         Top Rated Restaurents
       </Button>
+
+      {position.latitude && position.longitude ? (
+        <p className="float-right">
+          Latitude: {position.latitude}, Longitude: {position.longitude}
+        </p>
+      ) : (
+        <p>Loading...</p>
+      )}
+
       <div className="flex flex-wrap justify-center mt-14">
         {filteredListOfRestaurents.map((restaurant) => (
-          <RestaurentCard key={restaurant.info.id} resData={restaurant} />
+          <Link to={"/restaurant/" + restaurant.info.id} key={restaurant.info.id}>
+            <RestaurantCard resData={restaurant} />
+          </Link>
         ))}
         {/* {listOfRestaurents.map((restaurant) => (
-          <RestaurentCard key={restaurant.info.id} resData={restaurant} />
+          <RestaurantCard key={restaurant.info.id} resData={restaurant} />
         ))} */}
       </div>
     </div>
