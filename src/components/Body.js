@@ -1,5 +1,5 @@
 import { Button } from "flowbite-react";
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { useEffect, useState } from "react";
 import {
@@ -77,6 +77,8 @@ const Body = () => {
     );
   }
 
+  const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
+
   return listOfRestaurents.length === 0 ? (
     <Shimmer></Shimmer>
   ) : (
@@ -131,8 +133,17 @@ const Body = () => {
 
       <div className="flex flex-wrap justify-center mt-14">
         {filteredListOfRestaurents.map((restaurant) => (
-          <Link to={"/restaurant/" + restaurant.info.id} key={restaurant.info.id}>
-            <RestaurantCard resData={restaurant} />
+          <Link
+            to={"/restaurant/" + restaurant.info.id}
+            key={restaurant.info.id}
+          >
+            {restaurant.info.veg ? (
+              <RestaurantCardPromoted
+                resData={restaurant}
+              ></RestaurantCardPromoted>
+            ) : (
+              <RestaurantCard resData={restaurant}></RestaurantCard>
+            )}
           </Link>
         ))}
         {/* {listOfRestaurents.map((restaurant) => (

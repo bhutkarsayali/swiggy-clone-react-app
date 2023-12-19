@@ -1,6 +1,11 @@
 import ItemList from "./ItemList";
 
-const RestaurentCategory = (data, showItems, setShowIndex, propDrilling) => {
+const RestaurentCategory = ({
+  data,
+  showItems,
+  setShowIndex,
+  propDrilling,
+}) => {
   //below state handles accordion expand collapse click, and removing it for lifting its power up to its parent see notes
   //   const [showItems, setShowItems] = useState(false);
   const handleClick = () => {
@@ -10,11 +15,12 @@ const RestaurentCategory = (data, showItems, setShowIndex, propDrilling) => {
 
   return (
     <div className="border border-orange-300 w-10/12 m-auto mb-5 shadow-lg">
-      <div className="flex justify-between items-center p-5 bg-black text-white cursor-pointer">
+      <div
+        className="flex justify-between items-center p-5 bg-black text-white cursor-pointer"
+        onClick={handleClick}
+      >
         {/* Accordion- header*/}
-        <span className="font-bold text-md">
-          {data.title} 
-        </span>
+        <span className="font-bold text-md">{data.title}</span>
         <span>
           <svg
             className="w-3 h-3 rotate-180 shrink-0"
@@ -34,7 +40,7 @@ const RestaurentCategory = (data, showItems, setShowIndex, propDrilling) => {
       </div>
       {/* Accordion- body */}
       <div>
-        {/* {showItems && <ItemList items={data.itemCards} propDrilling={propDrilling} />} */}
+        {showItems && <ItemList items={data.itemCards} propDrilling={propDrilling} />}
       </div>
     </div>
   );

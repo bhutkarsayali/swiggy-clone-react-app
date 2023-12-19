@@ -10,14 +10,20 @@ import {
 import { AVATAR_IMG, LOGO_URL } from "../utils/constants/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/custom-hooks/useOnlineStatus";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import UserContext from "./../utils/global-context/UserContext";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   //custom hook to change online status
   const onlineStatus = useOnlineStatus();
+  const dataFromGlobalContext = useContext(UserContext);
 
   //toggle login-logout button
   const [btnName, setBtnName] = useState("Login");
+
+  //subscribe to appstore
+  const cartItems = useSelector((store) => store.cart.items);
 
   return (
     <Navbar fluid className="shadow-lg shadow-gray-300">
@@ -27,13 +33,17 @@ const Header = () => {
         </span>
       </NavbarBrand>
       <div className="flex md:order-2">
-        <div className="flex flex-wrap gap-8">
+        <div className="flex flex-wrap gap-8 items-center">
           <Avatar
             img={AVATAR_IMG}
             rounded
             status={onlineStatus ? "online" : "offline"}
             statusPosition="bottom-right"
+            className="shadow-md rounded-full shadow-black dark:shadow-white"
           />
+          <span className="dark:text-white">
+            {dataFromGlobalContext.loggedInUser}
+          </span>
           <Button
             color={btnName == "Login" ? "failure" : "success"}
             onClick={() => {
@@ -62,13 +72,13 @@ const Header = () => {
           </Link>
         </NavbarLink>
         <NavbarLink>
-          <Link to={"/cart"} className="font-semibold">
-            Cart
+          <Link to={"/contact"} className="font-semibold">
+            Contact
           </Link>
         </NavbarLink>
         <NavbarLink>
-          <Link to={"/contact"} className="font-semibold">
-            Contact
+          <Link to={"/cart"} className="font-semibold">
+            Cart ({cartItems.length} Items)
           </Link>
         </NavbarLink>
       </NavbarCollapse>

@@ -9,6 +9,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Contact from "./src/components/Contact";
 import Body from "./src/components/Body";
 import RestaurantMenu from "./src/components/RestaurantMenu";
+import Error from "./src/components/Error";
 
 //lazy loading Instamear and Cart component
 const Instamart = lazy(() => import("./src/components/Instamart"));
@@ -52,6 +53,7 @@ const appRouter = createBrowserRouter([
         element: <RestaurantMenu></RestaurantMenu>,
       },
     ],
+    errorElement: <Error></Error>
   },
 ]);
 const react_root = ReactDOM.createRoot(document.getElementById("root"));

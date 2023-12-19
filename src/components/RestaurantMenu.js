@@ -34,7 +34,7 @@ const RestaurantMenu = () => {
         "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
     );
 
-  const propDrilling = "prop Drilling";
+  const propDrilling = "prop Drilling Example (Sending downwards/to children)";
 
   return (
     <div className="w-8/12 m-auto p-4">

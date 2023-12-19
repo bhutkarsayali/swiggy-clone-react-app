@@ -1,6 +1,14 @@
+import { useDispatch } from "react-redux";
 import { CDN_URL } from "./../utils/constants/constants";
+import { addItem } from "../utils/redux-utils/CartSlice";
 
 const ItemList = ({ items, propDrilling }) => {
+
+  const dispatch = useDispatch();
+  const handleAddItem = (item) => {
+    dispatch(addItem(item));
+  };
+  
   return (
     <div className="">
       {items.map((item) => (
@@ -26,10 +34,13 @@ const ItemList = ({ items, propDrilling }) => {
               className="max-h-100"
               src={CDN_URL + item.card?.info?.imageId}
             />
-            <button className="p-1 absolute mx-auto border border-green-900 rounded-md w-[80px] right-0 left-0 top-0 bg-green-900 opacity-80 shadow-lg text-white">
+            <button
+              className="p-1 absolute mx-auto border border-green-900 rounded-md w-[80px] right-0 left-0 top-0 bg-green-900 opacity-80 shadow-lg text-white"
+              onClick={() => handleAddItem(item)}
+            >
               ADD +
             </button>
-            {propDrilling}
+            {/* {propDrilling} */}
           </div>
         </div>
       ))}

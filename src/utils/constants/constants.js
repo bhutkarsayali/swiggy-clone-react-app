@@ -4,6 +4,9 @@ export const LOGO_URL =
 export const AVATAR_IMG =
   "https://avatars.githubusercontent.com/u/35528987?v=4";
 
+export const GITHUB_PROFILE_INFO_API =
+  "https://api.github.com/users/BHUTKARSAYALI";
+
 export const RESTAURANT_API =
   "https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5462313&lng=73.90395099999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
 

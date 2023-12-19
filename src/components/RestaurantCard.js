@@ -2,7 +2,7 @@ import { Card } from "flowbite-react";
 import { IMAGE_ASSETS } from "../utils/constants/constants";
 
 const RestaurantCard = (props) => {
-//   console.log(props);
+  //   console.log(props);
   const { resData } = props;
   const { areaName, name, cuisines, avgRating, cloudinaryImageId, costForTwo } =
     resData?.info;
@@ -11,10 +11,7 @@ const RestaurantCard = (props) => {
     <Card
       className="max-w-xs m-2 border-none"
       imgAlt="Meaningful alt text for an image that is not purely decorative"
-      imgSrc={
-        IMAGE_ASSETS +
-        cloudinaryImageId
-      }
+      imgSrc={IMAGE_ASSETS + cloudinaryImageId}
     >
       <h3 className="text-lg font-bold tracking-tight text-gray-900 dark:text-white">
         {name}
@@ -69,6 +66,23 @@ const RestaurantCard = (props) => {
       <p className="font-normal text-gray-700 dark:text-gray-400">{areaName}</p>
     </Card>
   );
+};
+
+//Higher order componet which will take this restaurentcard as input and add promoted label on it and it will return anew component that is enhanced restaurent label with promoted label
+//input RestaurentCard ==> RestaurentCardPromoted
+//NOTE: Instead of promoted label, I am checking on "Veg : true" and using higher order function on it
+
+export const withPromotedLabel = (RestaurantCard) => {
+  return (props) => {
+    return (
+      <div>
+        <label className="absolute bg-green-700 text-white p-1 rounded-sm opacity-90">
+          Pure Veg
+        </label>
+        <RestaurantCard {...props}></RestaurantCard>
+      </div>
+    );
+  };
 };
 
 export default RestaurantCard;
