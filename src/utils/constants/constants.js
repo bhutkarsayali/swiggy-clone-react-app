@@ -13,16 +13,12 @@ export const RESTAURANT_API =
 export const IMAGE_ASSETS =
   "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/";
 
-export const RESTAURANT_API_LATTITUDE =
-  "https://www.swiggy.com/dapi/restaurants/list/v5?lat=";
-
-RESTAURANT_API_COCNCAT = "&lng=";
-
-export const RESTAURANT_API_LONGITUDE =
-  "&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
-
 export const RESTAURANT_MENU_API =
   "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=18.5462313&lng=73.90395099999999&restaurantId=";
 
 export const CDN_URL =
   "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/";
+
+export const sum = (a, b) => {
+  return a + b;
+};

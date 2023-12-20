@@ -8,14 +8,14 @@ const ItemList = ({ items, propDrilling }) => {
   const handleAddItem = (item) => {
     dispatch(addItem(item));
   };
-  
+
   return (
     <div className="">
       {items.map((item) => (
         <div
           data-testid="foodItems"
           key={item.card?.info?.id}
-          className="flex justify-between items-center mb-3 p-3 bg-orange-50"
+          className="flex justify-between items-center mb-3 p-3 bg-lime-200"
         >
           <div className="mr-5 w-9/12">
             <p className="font-bold text-orange-800">{item.card?.info?.name}</p>

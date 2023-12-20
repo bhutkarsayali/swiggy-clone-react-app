@@ -12,6 +12,7 @@ const RestaurantCard = (props) => {
       className="max-w-xs m-2 border-none"
       imgAlt="Meaningful alt text for an image that is not purely decorative"
       imgSrc={IMAGE_ASSETS + cloudinaryImageId}
+      data-testid="resCard"
     >
       <h3 className="text-lg font-bold tracking-tight text-gray-900 dark:text-white">
         {name}

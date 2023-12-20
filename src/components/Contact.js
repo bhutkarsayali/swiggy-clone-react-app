@@ -1,9 +1,9 @@
 const Contact = () => {
   return (
     <div className="w-9/12 m-auto">
-      <p className="text-blue-600 text-xl font-bold text-center my-5">
+      <h1 className="text-blue-600 text-xl font-bold text-center my-5">
         Contact Us
-      </p>
+      </h1>
       <p className="text-blue-600 text-xl text-center my-5">
         Let us know what you need and we will get back to you in no time.
       </p>

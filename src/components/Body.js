@@ -33,14 +33,6 @@ const Body = () => {
 
   const fetchData = async () => {
     const data = await fetch(RESTAURANT_API);
-    // const data = await fetch(
-    //   RESTAURANT_API_LATTITUDE +
-    //     position.latitude +
-    //     RESTAURANT_API_COCNCAT +
-    //     position.longitude +
-    //     RESTAURANT_API_LONGITUDE
-    // );
-
     const jsonData = await data.json();
     console.log(jsonData);
 
@@ -52,7 +44,7 @@ const Body = () => {
       jsonData?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants
     );
-    console.log(listOfRestaurents);
+    console.log(filteredListOfRestaurents);
   };
 
   const getGeolocation = () => {
@@ -95,6 +87,7 @@ const Body = () => {
           placeholder="Search Menu/Restaurent"
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
+          data-testid="searchInput"
         />
         <button
           type="submit"
