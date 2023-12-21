@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import ItemList from "./ItemList";
 
 const RestaurentCategory = ({
@@ -13,6 +14,9 @@ const RestaurentCategory = ({
     setShowIndex();
   };
 
+  //show Add btn on this page only, hide it on cart page
+  const [hideAddBtn, setHideAddBtn] = useState(false);
+  useEffect(() => setHideAddBtn(false), []);
   return (
     <div className="border border-orange-300 w-10/12 m-auto mb-5 shadow-lg">
       <div
@@ -40,7 +44,9 @@ const RestaurentCategory = ({
       </div>
       {/* Accordion- body */}
       <div>
-        {showItems && <ItemList items={data.itemCards} propDrilling={propDrilling} />}
+        {showItems && (
+          <ItemList items={data.itemCards} propDrilling={propDrilling} hideAddBtn={hideAddBtn}/>
+        )}
       </div>
     </div>
   );

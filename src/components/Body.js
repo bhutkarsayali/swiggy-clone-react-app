@@ -25,6 +25,7 @@ const Body = () => {
     longitude: null,
   });
 
+  const [hideAddBtn, setHideAddBtn] = useState(false);
   //get list of restaurents
   useEffect(() => {
     fetchData();

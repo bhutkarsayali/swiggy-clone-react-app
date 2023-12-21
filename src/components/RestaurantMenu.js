@@ -49,7 +49,7 @@ const RestaurantMenu = () => {
         <div>
           <div className="shadow-lg p-2 shadow-black">
             <span className="flex flex-wrap items-center gap-2 justify-center my-2">
-              <FaRegStar className="fill-green-500 stroke-green-500" />{" "}
+              <FaRegStar className="fill-green-500 stroke-green-500" />
               <span className="text-green-500 font-bold">{avgRating}</span>
             </span>
             <hr className="bg-yellow-800" />
@@ -65,7 +65,7 @@ const RestaurantMenu = () => {
           <RxLapTimer className="text-sm" /> <span>{slaString}</span>
         </span>
         <span className="flex gap-2 items-center text-sm lowercase">
-          <HiMiniCurrencyRupee className="text-sm h-4 w-4" />{" "}
+          <HiMiniCurrencyRupee className="text-sm h-4 w-4" />
           <span>{costForTwoMessage}</span>
         </span>
       </div>

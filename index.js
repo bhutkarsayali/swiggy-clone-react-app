@@ -40,7 +40,7 @@ const appRouter = createBrowserRouter([
         path: "/cart",
         element: (
           <Suspense fallback={<h1>Cart is Loading...</h1>}>
-            <Cart></Cart>{" "}
+            <Cart></Cart>
           </Suspense>
         ),
       },

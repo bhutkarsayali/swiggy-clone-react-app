@@ -1,9 +1,9 @@
 import { useDispatch } from "react-redux";
 import { CDN_URL } from "./../utils/constants/constants";
 import { addItem } from "../utils/redux-utils/CartSlice";
+import { useState } from "react";
 
-const ItemList = ({ items, propDrilling }) => {
-
+const ItemList = ({ items, propDrilling,hideAddBtn }) => {
   const dispatch = useDispatch();
   const handleAddItem = (item) => {
     dispatch(addItem(item));
@@ -20,7 +20,7 @@ const ItemList = ({ items, propDrilling }) => {
           <div className="mr-5 w-9/12">
             <p className="font-bold text-orange-800">{item.card?.info?.name}</p>
             <p className=" text-orange-800">
-              ₹{" "}
+              ₹
               {item.card?.info?.price
                 ? item.card?.info?.price / 100
                 : item.card?.info?.defaultPrice / 100}
@@ -34,12 +34,15 @@ const ItemList = ({ items, propDrilling }) => {
               className="max-h-100"
               src={CDN_URL + item.card?.info?.imageId}
             />
-            <button
-              className="p-1 absolute mx-auto border border-green-900 rounded-md w-[80px] right-0 left-0 top-0 bg-green-900 opacity-80 shadow-lg text-white"
-              onClick={() => handleAddItem(item)}
-            >
-              ADD +
-            </button>
+
+            {!hideAddBtn && (
+              <button
+                className="p-1 absolute mx-auto border border-green-900 rounded-md w-[80px] right-0 left-0 top-0 bg-green-900 opacity-80 shadow-lg text-white"
+                onClick={() => handleAddItem(item)}
+              >
+                ADD +
+              </button>
+            )}
             {/* {propDrilling} */}
           </div>
         </div>
