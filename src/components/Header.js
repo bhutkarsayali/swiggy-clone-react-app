@@ -13,6 +13,7 @@ import useOnlineStatus from "../utils/custom-hooks/useOnlineStatus";
 import { useContext, useState } from "react";
 import UserContext from "./../utils/global-context/UserContext";
 import { useSelector } from "react-redux";
+import { BsCartFill } from "react-icons/bs";
 
 const Header = () => {
   //custom hook to change online status
@@ -77,8 +78,11 @@ const Header = () => {
           </Link>
         </NavbarLink>
         <NavbarLink>
-          <Link to={"/cart"} className="font-semibold">
-            Cart ({cartItems.length} Items)
+          <Link to={"/cart"} className="font-semibold relative">
+            <BsCartFill className="h-5 w-5" />
+            <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-4 -end-4 dark:border-gray-900">
+              {cartItems.length}
+            </div>
           </Link>
         </NavbarLink>
       </NavbarCollapse>
