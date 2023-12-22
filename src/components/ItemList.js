@@ -2,15 +2,56 @@ import { useDispatch } from "react-redux";
 import { CDN_URL } from "./../utils/constants/constants";
 import { addItem } from "../utils/redux-utils/CartSlice";
 import { useState } from "react";
+import { CiSquarePlus } from "react-icons/ci";
+import { CiSquareMinus } from "react-icons/ci";
 
-const ItemList = ({ items, propDrilling,hideAddBtn }) => {
+const ItemList = ({ items, propDrilling, hideAddBtn }) => {
+  const [itemCount, setItemCount] = useState(null);
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [myOrderList, setMyOrderList] = useState([]);
+
   const dispatch = useDispatch();
   const handleAddItem = (item) => {
+    const totalCount = itemCount + 1;
+    const addedItem = addItem(item);
     dispatch(addItem(item));
+    setItemCount(totalCount);
+    setSelectedItem(addedItem.payload.card.info.name);
+    // setMyOrderList([...myOrderList , addedItem.payload.card.info.name]);
+    setMyOrderList([
+      ...myOrderList,
+      `Entry ${(myOrderList.length, addedItem.payload.card.info.name)}`,
+    ]);
+
+    console.log(addedItem.payload.card.info.name);
+    console.log("mylist - > ", myOrderList);
   };
 
   return (
     <div className="">
+      {!hideAddBtn && (
+        <div className="fixed left-0 w-[200px] top-52 text-white">
+          {itemCount > 0 && (
+            <>
+              <p className="text-md font-bold p-4 bg-blue-900 text-white opacity-90">
+                My Order
+              </p>
+              {/* <ol className="p-5 list-disc">
+            <li className="">
+              {itemCount} - {selectedItem}
+            </li>
+          </ol> */}
+              <ol className="p-5 list-none bg-blue-500 opacity-90">
+                {myOrderList.map((entry, index) => (
+                  <li key={index}>
+                    {index + 1} - {entry}
+                  </li>
+                ))}
+              </ol>
+            </>
+          )}
+        </div>
+      )}
       {items.map((item) => (
         <div
           data-testid="foodItems"
@@ -43,6 +84,18 @@ const ItemList = ({ items, propDrilling,hideAddBtn }) => {
                 ADD +
               </button>
             )}
+            <div>
+              <CiSquarePlus />
+              {item.card?.info?.name == selectedItem ? (
+                <p>
+                  {itemCount} {selectedItem}
+                </p>
+              ) : (
+                "incorrect"
+              )}
+
+              <CiSquareMinus />
+            </div>
             {/* {propDrilling} */}
           </div>
         </div>
